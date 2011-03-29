@@ -1,0 +1,60 @@
+despace
+-------
+
+What is it?
+-----------
+A script to create zf1-style classes from namespaced classes
+
+I have been inspired to create this script by the requirement to use 
+PHP5.2 for a productive system but the urge to develop with PHP5.3
+and its benefits.
+
+So I had to find a way to create classes that could be used with 
+PHP5.2 from namespaced PHP-Classes.
+
+So from this class::
+
+	<?php
+	namespace \Foo
+	
+	class Bar {}
+
+the script makes this class::
+
+	<?php
+	
+	class Foo_Bar {}
+
+The script also takes care of putting the new Class-Files into the
+correct location.
+So the above class \Foo\Bar with this path::
+
+	Foo/Bar/Bar.php
+
+will be put into the new Location::
+
+	Foo/Bar.php
+
+Usage
+-----
+::
+
+	despace.php [options] <srcfile/srcfolder> <dstfolder>
+	
+where ``<srcfile/srcfolder>`` is the file (or the folder when using the 
+recursive switch) containing the namespaced classes that shall be 
+transformed.
+
+``<dstfolder>`` is the folder where the transformed files shall be stored 
+at. If files already exist, the existing file will be renamed, so if you 
+want to get rid of old stuff, make sure it is removed *before* you call 
+this script.
+
+The following options are available
+
+--recursive, -r  go recursively through the given directory. This switch
+				 only makes sense, when specifying a directory as 
+				 ``<srcfile/srcfolder>``.
+--version, -V	 display the version of the script.
+--verbose, -v    output more informations along the transformation.
+
